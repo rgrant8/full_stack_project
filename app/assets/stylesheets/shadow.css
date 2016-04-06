@@ -1,0 +1,34 @@
+
+/*   Div Shadows   */
+.tl-div-shad{
+  box-shadow: -3px -2px 12px #ddd;
+}
+
+.tr-div-shad{
+  box-shadow: 3px -2px 12px #ddd;
+}
+
+.bl-div-shad{
+  box-shadow: -2px 3px 12px #ddd;
+}
+
+.br-div-shad{
+  box-shadow: 3px 2px 12px #ddd;
+}
+
+/*   Text Shadows   */
+.tl-text-shad{
+  text-shadow: -1.5px -1.5px #ddd;
+}
+
+.tr-text-shad{
+  text-shadow: 1.5px -1.5px #ddd;
+}
+
+.bl-text-shad{
+  text-shadow: -1.5px 1.5px #ddd;
+}
+
+.br-text-shad{
+  text-shadow: 1.5px 1.5px #ddd;
+}

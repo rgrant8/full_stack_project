@@ -1,0 +1,83 @@
+.digg_pagination {
+  //background: white;
+  cursor: default;
+  display: table;
+  margin: 0 auto;
+  padding:8px;
+
+  /* self-clearing method: */ }
+
+.digg_pagination a:hover {
+  background-color: #3db2e1;
+  color: white;
+}
+
+  #pagination-wrapper{
+    //margin-bottom: 20px;
+    margin: auto;
+  }
+
+  #pagination-inner-wrapper{
+    background-color: rgba(255, 255, 255, 1);
+    margin: auto;
+    //padding-top: 20px;
+    border: solid 1px #ccc;
+    border-top: solid 1px #ddd;
+  }
+
+  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: .2em 0.2em;
+    display: block;
+    float: left;
+    background-color: white;
+  //  margin-right: 1px; 
+  }
+
+  .digg_pagination span
+  {margin-top: 1px}
+
+  .digg_pagination .disabled {
+    color: #f4f4f4;
+    border: 1px solid #ddd; 
+    margin: 1px;
+    background-color: #ddd;
+    padding-bottom: 3px;}
+  .digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: rgba(7,105,167, .7);
+    color: white;
+    border: 1px solid #ccc; }
+  .digg_pagination a {
+    text-decoration: none;
+    color: #ccc;
+    border: .5px solid #ccc;
+    background-color: #fff;
+    .digg_pagination a:hover, .digg_pagination a:focus {
+      color: white;
+      border-color: white; }}
+  .digg_pagination .page_info {
+    //background: #3591cc; 
+    color: #999;
+    //padding: 0.4em 0.6em;
+    //margin-bottom: 0.3em;
+    text-align: center;
+    font-size: 11px;
+    display: block; 
+    margin-top: 5px;
+    padding-top: 35px;
+  }
+    .digg_pagination .page_info b {
+      color: #666;
+      //background: #3db2e1;
+      padding: 0.1em 0.25em; }
+  .digg_pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .digg_pagination {
+    height: 1%; }
+  *:first-child + html .digg_pagination {
+    overflow: hidden; }

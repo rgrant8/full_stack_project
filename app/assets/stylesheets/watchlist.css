@@ -1,0 +1,48 @@
+
+#graph-img{
+  width: 100%;
+  //box-shadow: 8px -8px 8px #ddd;
+  //box-shadow: 2px -4px 12px #ddd;
+}
+
+#home-fixed{
+  position: fixed;
+  //z-index: -999;
+  height: auto;
+  width:140px;
+}
+
+
+#inner-title{
+  //position: fixed;
+  //top:59%;
+  //height: 510px;
+
+  //padding: 5px;
+  //width: 100%;
+  margin: auto;
+  text-align: center;
+  color: #e06c3d;
+  //color: #a74507;
+  //text-shadow: 1px 1px #3db2e1;
+  font-size: 35px;
+  font-weight: bold;
+  
+}
+
+#site-title{
+  position: static;
+  //top:38%;
+  //right: 18%;
+  //height: 510px;
+
+  padding: 5px;
+  //width: 100%;
+  margin: auto;
+  text-align: center;
+  color: #f4f4f4;
+  font-size: 67px;
+  font-weight: bold;
+  padding-top: 75px;
+}
+

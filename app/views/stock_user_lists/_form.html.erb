@@ -1,0 +1,29 @@
+<%= form_for(@stock_user_list) do |f| %>
+  <% if @stock_user_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stock_user_list.errors.count, "error") %> prohibited this stock_user_list from being saved:</h2>
+
+      <ul>
+      <% @stock_user_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :lists_id %><br>
+    <%= f.text_field :lists_id %>
+  </div>
+  <div class="field">
+    <%= f.label :users_id %><br>
+    <%= f.text_field :users_id %>
+  </div>
+  <div class="field">
+    <%= f.label :stock_name %><br>
+    <%= f.text_field :stock_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

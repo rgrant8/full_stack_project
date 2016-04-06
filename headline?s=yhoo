@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>Error</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="white" FGCOLOR="black">
+<!-- status code : 301 -->
+<!-- Error: GET -->
+<!-- host machine: media-border99.global.media.gq1.yahoo.com -->
+<!-- timestamp: 1429876977.000 -->
+<!-- url: http://finance.yahoo.com/rss/headline?s=yhoo-->
+<H1>Error</H1>
+<HR>
+
+<FONT FACE="Helvetica,Arial"><B>
+Description: Could not process this "GET" request.
+</B></FONT>
+<HR>
+</BODY>

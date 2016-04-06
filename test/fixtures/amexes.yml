@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  name: MyString
+  market: MyString
+  country: MyString
+  ipo: MyString
+  sector: MyString
+  alive: false
+  list_type: MyString
+
+two:
+  symbol: MyString
+  name: MyString
+  market: MyString
+  country: MyString
+  ipo: MyString
+  sector: MyString
+  alive: false
+  list_type: MyString

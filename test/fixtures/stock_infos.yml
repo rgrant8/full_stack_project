@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  name: MyString
+  bid: 9.99
+  ask: 9.99
+  year_high: 9.99
+  year_low: 9.99
+
+two:
+  symbol: MyString
+  name: MyString
+  bid: 9.99
+  ask: 9.99
+  year_high: 9.99
+  year_low: 9.99

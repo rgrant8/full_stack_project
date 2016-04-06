@@ -1,0 +1,219 @@
+<!-- 
+  File: show.html.erb (Parent: Nyse)
+  Type: Full View
+  Use: List Individual Resources Data and Articles
+
+  #DEBUGGING SUMMARY 
+   0 Fix Alert(s) 
+   1 Bug Alert(s)     
+-->
+
+<%= include_gon %>
+<% StockUserList.connection %>
+<div id="show-wrapper">
+  <div id="pagewrap">
+   <div id="p-header" class="top"> 
+    <div id="market_title">
+     <div id="p-header-center">NYSE</div>
+     <div id="p-header-left">
+      <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+       <%= link_to "Back", nyses_path %>
+      </div>
+      
+      <div id="p-header-right">
+        <% if current_user %>      
+         <% @in_List = false %>
+          <% users = StockUserList.all %>
+            <% users.each do |e| %>
+              <% if current_user.id == e.users_id && @nyses.id == e.lists_id %> 
+                <% @in_List = true %>
+              <% end %>  
+            <% end %>  
+          <% end %> 
+
+        <% if current_user %>      
+          <% if @in_List %>  
+            <div id="saved-btn" style="cursor: default;" class="followed btn btn-primary btn-xs" role="button">
+              Saved
+            </div>  
+          <% else %>
+            <% @stock_user_list = StockUserList.new %>
+            <%= form_for @stock_user_list, remote: true do |f|%>        
+            <%= f.hidden_field :lists_id, value: @nyse.id %>
+            <%= f.hidden_field :users_id, value: current_user.id %>
+            <%= f.hidden_field :stock_name, value: @nyse.symbol %>
+             <% if @nyse.alive != false %> 
+              <div id="saved-btn" class="follow btn btn-primary btn-xs" role="button">
+               Follow
+              </div> 
+             <% else %>
+               Delisted
+             <% end %>
+            <% end %>  
+          <% end %>
+        <% end %>
+
+        <% if !current_user %>   
+         <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+            <%= link_to "Follow", new_user_session_path %>
+         </div>
+        <% end %>
+        
+         <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+          <%= link_to "List", stock_user_lists_path %>
+         </div>
+         <!-- div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+          <%#= link_to "Info", root_path %>
+         </div-->  
+       </div>
+     </div>
+    </div>
+   </div>
+
+    <section id="content" class="left">
+      <div id="chart-wrapper">
+        <div id="container"></div>
+      </div>
+    </section>
+
+    <!-- !!!!!! BUG ALERT !!!!!! -->
+    <!-- first table date not parsing -->
+    <section id="middle" class="right">
+     <div id="headlines-table-wrapper" style="visibility: hidden;">
+      <table id="headlines" class="display pullDown">
+       <col width="20%" />
+       <col width="60%" />
+       <col width="20%" />
+        <thead>
+         <tr>
+          <th>Date</th>
+          <th>News Headlines & Articles</th>
+          <th>Source</th>
+         </tr>
+        </thead>
+        <tbody>
+         <% $nyse_headlines.each_with_index do |h,i| %>
+          <tr>
+           <td><%= @dates[i] %></td>
+           <td><%= link_to h[0], h[1], :class => "move_to", :target => "_blank" %>
+               <%= h[2]%></td>
+           <td><%= @cites[i] %></td>
+          </tr>
+         <% end %>
+        </tbody>
+      </table>
+     </div>
+    </section>
+
+  <div id="p-footer"></div>
+
+  </div>
+</div>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- Ajax function needs reworking script only called upon reload -->
+<!-- Leave scripts in .HTML.ERB Files until issue is resolved. -->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+
+<script type="text/javascript">
+// *** SEE NOTE ABOVE FOR WHY JS LOCATED IN THIS FILE ***
+  function showIt() {
+    $('#headlines-table-wrapper').css('visibility', 'visible');}
+  
+  setTimeout("showIt()", 500);
+
+  $('#headlines').DataTable({
+    "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]],
+    "pagingType": "simple_numbers",
+    "pageLength": 10,
+    "order": [ 0, 'desc' ],
+    "scrollY": '425px',
+    "fixedHeader": true,
+    "aoColumnDefs": [
+     { 'bSortable': false, 'aTargets': [ 1 ] },
+    ],
+    "oLanguage": {
+      "sProcessing": "<img src='../assets/load.gif' height='50' width='50'>"
+    },
+    "processing": true,
+    "bInfo" : false,
+  });
+
+$follow = $('#saved-btn');
+$(document).ready(function(){
+  $follow.click(function(){
+    $follow.html("Saved")
+    $follow.trigger('submit.rails');
+    $follow.prop('disabled', true); 
+  });
+      
+    $('.right').addClass("default-speed fadeIn visible");
+    $('.left').addClass("default-speed fadeIn visible");
+    $('.top').addClass("default-speed fadeIn visible");
+    });
+
+  $(function (data) {
+    $('#container').highcharts('StockChart', {
+
+      rangeSelector : {
+          selected : 1
+      },
+
+      chart : {
+        backgroundColor:'rgba(249, 249, 249, 1)'
+      },
+
+      title : {
+          text : gon.pref0//  + ' \'PRICE POINT\' HISTORY'
+      },
+
+      subtitle: {
+          text: 'Most Recent Price Point: ' + gon.close
+      },   
+
+      credits : {
+           enabled: false
+      },
+
+      series : [{
+        name : gon.t_sym + ' Stock Price',
+        data : gon.data,
+        threshold : null,
+        step: true,
+        tooltip : {
+          valueDecimals : 2
+        },
+        fillColor : {
+          linearGradient : {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          },
+          stops : [
+            [0, Highcharts.getOptions().colors[0]],
+            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+          ]
+        }
+      }]
+    });
+  });
+
+   //TESTING BLOCK
+    //console.log(gon.pref0)
+    // console.log(gon.open)
+    // console.log(gon.trade_date)
+    //console.log(gon.tester)
+    // console.log(gon.master)
+    // console.log(gon.high) // FINAL SOLUTION FOR MAX GRAPH HEIGHT 
+    // console.log(gon.maxmum)
+    // console.log(gon.data)
+    // console.log(gon.change_data)
+    // console.log(gon.get_desc)
+    console.log(gon.get_link)
+    //console.log(gon.get_cite)
+    //console.log(gon.date)
+    // console.log(gon.date_day)
+    // console.log(gon.date_mo)
+    // console.log(gon.get_quote)
+</script>

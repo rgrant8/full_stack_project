@@ -1,0 +1,250 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actionmailer (4.1.6)
+      actionpack (= 4.1.6)
+      actionview (= 4.1.6)
+      mail (~> 2.5, >= 2.5.4)
+    actionpack (4.1.6)
+      actionview (= 4.1.6)
+      activesupport (= 4.1.6)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    actionview (4.1.6)
+      activesupport (= 4.1.6)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    activemodel (4.1.6)
+      activesupport (= 4.1.6)
+      builder (~> 3.1)
+    activerecord (4.1.6)
+      activemodel (= 4.1.6)
+      activesupport (= 4.1.6)
+      arel (~> 5.0.0)
+    activesupport (4.1.6)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    ajax-datatables-rails (0.3.1)
+      railties (>= 3.1)
+    alphabetical_paginate (2.3.1)
+    angular-rails (0.0.12)
+      coffee-script (~> 2.2.0)
+      rails
+    angular-ui-select2-rails (0.1.1)
+      jquery-rails
+      select2-rails
+    arel (5.0.1.20140414130214)
+    bcrypt (3.1.11)
+    bootstrap-sass (3.1.0.2)
+      sass (~> 3.2)
+    bootstrap-sass-rails (3.1.0.0)
+      bootstrap-sass (~> 3.1.0.0)
+      railties (>= 3.2.0)
+      sass-rails (>= 3.2.0)
+    builder (3.2.2)
+    chronic (0.10.2)
+    coffee-rails (4.0.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.10.0)
+    commonjs (0.2.7)
+    devise (3.5.6)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    elasticsearch (1.0.15)
+      elasticsearch-api (= 1.0.15)
+      elasticsearch-transport (= 1.0.15)
+    elasticsearch-api (1.0.15)
+      multi_json
+    elasticsearch-transport (1.0.15)
+      faraday
+      multi_json
+    erubis (2.7.0)
+    execjs (2.6.0)
+    faraday (0.9.2)
+      multipart-post (>= 1.2, < 3)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
+    hashie (3.4.3)
+    hike (1.2.3)
+    i18n (0.7.0)
+    jbuilder (2.4.1)
+      activesupport (>= 3.0.0, < 5.1)
+      multi_json (~> 1.2)
+    jquery-datatables-rails (3.3.0)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
+    jquery-rails (3.1.4)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
+    jquery-ui-bootstrap-rails (0.0.2)
+    jquery-ui-bootstrap-rails-asset (0.0.3)
+      bootstrap-sass-rails
+      railties (>= 3.1.0)
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
+    json (1.8.3)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.7.1)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
+    libv8 (3.16.14.13)
+    mail (2.6.4)
+      mime-types (>= 1.16, < 4)
+    mime-types (3.0)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0221)
+    mini_portile2 (2.0.0)
+    minitest (5.8.4)
+    multi_json (1.11.2)
+    multipart-post (2.0.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
+    orm_adapter (0.5.0)
+    owlcarousel-rails (1.1.3.3)
+      jquery-rails
+    rack (1.5.5)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rails (4.1.6)
+      actionmailer (= 4.1.6)
+      actionpack (= 4.1.6)
+      actionview (= 4.1.6)
+      activemodel (= 4.1.6)
+      activerecord (= 4.1.6)
+      activesupport (= 4.1.6)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.1.6)
+      sprockets-rails (~> 2.0)
+    rails-ajax (1.0.0.20140320)
+      rails (>= 3.2.1)
+    railties (4.1.6)
+      actionpack (= 4.1.6)
+      activesupport (= 4.1.6)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+    rake (11.1.2)
+    rdoc (4.2.2)
+      json (~> 1.4)
+    redis (3.2.2)
+    ref (2.0.0)
+    request_store (1.3.0)
+    responders (1.1.2)
+      railties (>= 3.2, < 4.2)
+    sass (3.2.19)
+    sass-rails (4.0.5)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.2.2)
+      sprockets (~> 2.8, < 3.0)
+      sprockets-rails (~> 2.0)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
+    searchkick (1.2.1)
+      activemodel
+      elasticsearch (>= 1)
+      hashie
+    select2-rails (4.0.1.1)
+      thor (~> 0.14)
+    selectize-rails (0.12.1)
+    spring (1.6.4)
+    sprockets (2.12.4)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.3.3)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.11)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
+    thor (0.19.1)
+    thread_safe (0.3.5)
+    tilt (1.4.1)
+    turbolinks (2.5.3)
+      coffee-rails
+    twitter-bootstrap-rails (3.2.2)
+      actionpack (>= 3.1)
+      execjs (>= 2.2.2, >= 2.2)
+      less-rails (>= 2.5.0)
+      railties (>= 3.1)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    uglifier (3.0.0)
+      execjs (>= 0.3.0, < 3)
+    warden (1.2.6)
+      rack (>= 1.0)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
+    will_paginate (3.1.0)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
+    yahoo-finance (1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ajax-datatables-rails
+  alphabetical_paginate
+  angular-rails
+  angular-ui-select2-rails
+  bootstrap-sass
+  coffee-rails (~> 4.0.0)
+  devise
+  gon
+  jbuilder (~> 2.0)
+  jquery-datatables-rails (~> 3.3.0)
+  jquery-rails
+  jquery-turbolinks
+  jquery-ui-bootstrap-rails
+  jquery-ui-bootstrap-rails-asset
+  jquery-ui-rails
+  less-rails
+  nokogiri (~> 1.6.7.2)
+  owlcarousel-rails
+  rails (= 4.1.6)
+  rails-ajax
+  redis
+  sass-rails (~> 4.0.3)
+  sdoc (~> 0.4.0)
+  searchkick
+  select2-rails
+  selectize-rails
+  spring
+  sqlite3
+  therubyracer
+  turbolinks
+  twitter-bootstrap-rails
+  uglifier (>= 1.3.0)
+  whenever
+  will_paginate (~> 3.0)
+  will_paginate-bootstrap
+  yahoo-finance
+
+BUNDLED WITH
+   1.11.2

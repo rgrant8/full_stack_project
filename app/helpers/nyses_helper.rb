@@ -1,0 +1,3 @@
+module NysesHelper
+	
+end

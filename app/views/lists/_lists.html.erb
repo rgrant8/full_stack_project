@@ -1,0 +1,120 @@
+<!-- 
+  File: _lists.html.erb
+  Type: Partial View
+  Use: Entire List of NYSE resources 
+
+  #DEBUGGING SUMMARY 
+   0 Fix Alert(s) 
+   1 Bug Alert(s)     
+-->
+
+<% StockUserList.connection %>
+<%= include_gon %>
+
+<div id="pagewrap">
+ <div id="p-header" class="top"> 
+  <div id="market_title">
+   <div id="p-header-left">
+    <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+     <%= link_to "Back", root_path %>
+    </div>
+   </div>
+   
+   <div id="p-header-center">NASDAQ</div>
+   
+  <div id="p-header-right">
+   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+     <%= link_to "List", stock_user_lists_path %>
+   </div>
+   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+    <a href="#openModal">Help</a>
+   </div>
+   <div id="openModal" class="modalDialog">
+    <div> <a href="#close" title="Close" class="close">X</a>
+     <h2>Help Desk</h2>
+     <p>Search for a public company of interest, listed on the NASDAQ.</p></br>
+     <p>Once you've found a company click on explore. This will move you to the next step.</p></br> 
+     <p>Sign in and follow a company to compare or keep track.</p></br>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+ <section id="content" class="right class="right not-visible""> 
+  <div id="headlines-table-wrapper">
+    <table id="list_co" class="display pullDown" data-source="<%= lists_url(format: "json") %>">
+      <col width="20%" />
+      <col width="60%" />
+      <col width="20%" />
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Company Name</th>
+        <th>Explore</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Server Side. Faster loading for big data. -->
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <section id="middle" class="left not-visible">
+  <div id="middle-wrapper">
+    <h2>National Association of Securities Dealers Automated Quotations</h2>
+
+    <p>The NASDAQ Stock Market, commonly known as the NASDAQ (currently stylized as Nasdaq), is an American stock exchange. It is the second-largest exchange in the world by market capitalization, behind only the New York Stock Exchange. The <img src="../assets/nasdaq.jpg" height="230px" style="float:right; padding:10px;">exchange platform is owned by The NASDAQ OMX Group, which also owns the OMX stock market network and several other US stock and options exchanges.</p>
+    <!-- p>There are tricks to building a table that looks and functions just right, here are mine. This table was built using two seperate tables, an upper and a lower. The upper is used to maintain the position of the static header and the lower provides the scrolling feature for this tables' content. The table window is its own seperate entity and changes dynamically depending on the users specifications. </p--></br>
+    
+    <p>The European Association of Securities Dealers Automatic Quotation System (EASDAQ) was founded originally as a European equivalent to NASDAQ. It was purchased by NASDAQ in 2001 and became NASDAQ Europe. Operations were shut down, however, as a result of the burst of the dot-com bubble. In 2007, NASDAQ Europe was revived as Equiduct, and is currently operating under Börse Berlin.</p>
+    <!--p>Sometimes It's hard get excited about table data. I have added a few UI features to keep things interesting. A highlighted row and a delayed color change (the button's text) coupled with a slight hint of orange help to set it off. Hover over the button itself and it comes to life too. It is almost impossible not to click it. Click me Click me!</p--></br>
+
+    <!--p>This table is fully resposive and will look good on any size screen. Try adjusting your browser and watch the table transform. The results are a nice looking table that is compact and user friendly. Other more obvious features are pagination (page controller), list size parameters, search functionality, and column sort.</p-->
+    </br>
+   </div>
+  </section>
+  
+ <div id="p-footer"></div>
+</div>
+
+<div class="modal"></div>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- Ajax function needs reworking script only called upon reload -->
+<!-- Leave scripts in .HTML.ERB Files until issue is resolved. -->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(this).scrollTop(0);
+    $('.right').addClass("slow-speed pullDown is-visible");
+    $('.left').addClass("slow-speed pullDown is-visible");
+    $('.down').addClass("slow-speed pullUp is-visible");
+  });
+
+ $('#list_co').DataTable({
+    "lengthMenu": [[100, 250, 500, 5000], [100, 250, 500, "All"]],
+    "bProcessing": true,
+    "bServerSide": true,
+    "sAjaxSource": $('#list_co').data('source'),
+    "pagingType": "simple_numbers",
+    "pageLength": 250,
+    "order": [ 0, 'asc' ],
+     "scrollY": '425px',
+     "fixedHeader": true,
+     "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 2 ] },
+      ],
+     "oLanguage": {
+         "sProcessing": "<img src='../assets/load.gif' height='50' width='50'>"
+     },
+     "processing": true,
+     "bInfo" : false,
+  });
+</script>
+
+
+

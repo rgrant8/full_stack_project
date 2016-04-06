@@ -1,0 +1,277 @@
+<%= include_gon %>
+
+<!-- SECTION ONE -->
+<div id="section-one">
+    <div id="main-button-wrapper">
+      <div id="main-button1">EXPLORE</div>
+      <%= link_to "SIGN-UP", new_user_session_path, :id => "main-button2",
+          :class => "move_to new_user_session_path", :method => :get %>
+    </div>
+  <div id="arrow-down"></div>
+</div>
+
+<!-- Div cutout -->
+  
+
+<!-- SECTION TWO -->
+<div id="section-two">
+  <div id="site-title"> 
+    Market View <img id="beta" src="../assets/beta.png">
+  </div>
+  <div id="inner-title">
+    Set Sail In The Right Direction.
+  </div> 
+</div>
+
+<div id="explore-path"></div>
+
+<!-- SECTION THREE -->
+<div id="section-three">
+  <div id="pagewrap">
+    <div id="s3-1">
+      <section id="content" class="anim-down">
+        <div id="heading" class="tl-text-shad">Stock Market Analysis </div>
+        <ul id="guidance" class="tl-text-shad">
+          <li>Interactive Data Review</li>
+        </ul>
+      </section>
+    </div>
+
+    <div id="s3-2">
+      <section id="middle" class="anim-down">
+        <img id="graph-img" class="tl-div-shad" src="../assets/graphs.jpeg">
+      </section>
+    </div>
+  
+    <div id="s3-3" class="anim-up">
+      <div id="p-footer">
+        <div id="main-button3">NEXT</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="filler-one"></div>
+
+<!-- SECTION FOUR -->
+<div id="section-four">
+  <div id="pagewrap">
+    
+    <div id="s4-3" class="anim-down">
+      <div id="p-footer">
+       <div id="main-button4">NEXT</div>
+      </div>
+    </div>
+
+    <div id="s4-1">
+      <section id="content" class="anim-up graph-img-left">
+        <img id="graph-img" class="bl-div-shad" src="../assets/graph.jpeg">
+      </section>
+    </div>
+
+    <div id="s4-2">
+      <section id="middle" class="anim-up graph-img-right">
+        <div id="heading" class="bl-text-shad">Individual Assesments</div>
+        <ul id="guidance" class="bl-text-shad">
+          <!-- li> IPO-to-Date Price Ranges</li -->
+          <li> Follow and Find Company Articles </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION FIVE -->
+<div id="section-five">
+  <div id="pagewrap">
+    <div id="s5-1">
+      <section id="content" class="anim-down content-five">
+        <div id="heading">Complete Market Lists</div>
+        <ul id="guidance">
+          <li> Easily Find Any Public Company</li>
+          <!-- li>- Choose a Market</li>
+          <li>- </li-->
+        </ul>
+      </section>
+    </div>
+    
+    <div id="s5-2">  
+      <section id="middle" class="anim-down">
+        <img id="graph-img" class="tl-div-shad" src="../assets/table.png">
+      </section>
+    </div>
+    
+    <div id="s5-3" class="anim-up">
+      <div id="p-footer">
+        <div id="main-button5">NEXT</div>
+      </div>
+    </div>  
+  </div>
+</div>
+
+<div id="filler-two">
+</div>
+
+<!-- Footer -->
+<div id="foota">
+  <div id="power">Powered By</div>
+      <a href="http://www.finance.yahoo.com">
+        <img id="sponsorimg" src="../assets/yahoo.png" alt="HTML tutorial"></a>
+      <a href="http://www.amazon.com">
+        <img id="sponsorimg" src="../assets/amazon.png" alt="HTML tutorial"></a>
+      <a href="http://www.nasdaq.com">
+        <img id="sponsorimg" src="../assets/nasdaq.png" alt="HTML tutorial"></a>
+      <a href="http://www.rubyonrails.org">
+        <img id="sponsorimg" src="../assets/rails.png" alt="HTML tutorial"></a> 
+      <a href="http://www.highcharts.com">
+        <img id="sponsorimg" src="../assets/highchart.png" alt="HTML tutorial"></a>     
+</div>
+
+<div id="filler-three" class="not-visible">
+  <div id="foot-title-wrapper">
+    <div id="foot-title">Let's Choose a Market
+    </div>
+  </div>
+ <div id="intro-btn-wrapper"> 
+  <%= link_to "NASDAQ", lists_path, :id => "intro-button1",
+    :class => "move_to new_user_session_path", :method => :get %>
+  <%= link_to "NYSE", nyses_path, :id => "intro-button2",
+    :class => "move_to new_user_session_path", :method => :get %>
+  <%= link_to "AMEX", amexes_path, :id => "intro-button3",
+    :class => "move_to new_user_session_path", :method => :get %>
+  </div>
+  </div>
+
+<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+<div class="modal"></div>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!BUG ALERT!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- AJAX BUG. .JS FILE NOT RE-RENDERING WHEN LEAVE PAGE & RETURN -->
+<!-- FORCED TO PLACE JS IN HTML.ERB FILE FOR NOW UNTIL FIX IS FOUND :/ -->
+
+<script type="text/javascript">
+$(document).ready(function() { 
+  $(window).scroll(function() {
+    if ($(this).scrollTop() >= 250) {        // If page is scrolled more than 50px
+      $('#return-to-top').fadeIn(200);
+      $('#main-button-wrapper').fadeOut(200) }
+    else {
+      $('#return-to-top').fadeOut(200);
+      $('#main-button-wrapper').fadeIn(200) } 
+  });
+
+   $("#s3-1").hide(); //hide div initially
+   $("#s3-2").hide();
+   $("#s3-3").hide();
+    var topOf_s2 = $("#section-two").offset().top-200;
+    $(window).scroll(function() {
+        if($(window).scrollTop() > topOf_s2) { //scrolled past the other div?
+            $("#s3-1").show(300); //reached the desired point -- show div
+            $("#s3-2").show(300); //reached the desired point -- show div
+            $("#s3-3").show(300);
+        }
+    });
+
+   $("#s4-1").hide(); //hide div initially
+   $("#s4-2").hide();
+   $("#s4-3").hide();
+    var topOf_f1 = $("#section-three").offset().top+360;
+    $(window).scroll(function() {
+        if($(window).scrollTop() > topOf_f1) { //scrolled past the other div?
+            $("#s4-1").show(300); //reached the desired point -- show div
+            $("#s4-2").show(300); //reached the desired point -- show div
+            $("#s4-3").show(300);
+        }
+    });
+
+   $("#s5-1").hide(); //hide div initially
+   $("#s5-2").hide();
+   $("#s5-3").hide();
+    var topOf_s3 = $("#section-four").offset().top-150;
+    $(window).scroll(function() {
+        if($(window).scrollTop() > topOf_s3) { //scrolled past the other div?
+            $("#s5-1").show(300); //reached the desired point -- show div
+            $("#s5-2").show(300); //reached the desired point -- show div
+            $("#s5-3").show(300);
+        }
+    });
+
+  $('#return-to-top').click(function() {      // When arrow is clicked
+      $('body,html').animate({ scrollTop : 0}, 1200);
+  });
+
+  $("#main-button1").click(function() {
+      $('html,body').animate({ scrollTop: $("#explore-path").offset().top-70}, 1200);
+  });
+
+  $("#main-button3").click(function() {
+    div_height = $("#section-four").height();
+    div_offset = $("#section-four").offset().top+47;
+    window_height = $(window).height();
+    $('html,body').animate({ scrollTop: div_offset - window_height + div_height}, 1200);
+  });
+
+  $("#main-button4").click(function() {
+      $('html,body').animate({
+          scrollTop: $("#section-five").offset().top-70}, 900);
+  });
+
+  $("#main-button5").click(function() {
+    div_height = $("#foota").height();
+    div_offset = $("#foota").offset().top;
+    window_height = $(window).height();
+    $('html,body').animate({ scrollTop: div_offset-window_height+div_height }, 1200);
+
+    setTimeout(function(){$('html, body').animate({scrollTop: $(document).height()}, 1200);}, 4000);
+  }); 
+
+  $(window).scroll(function() {
+    $('.anim-right').each(function(){
+    var imagePos = $(this).offset().top;
+
+    var topOfWindow = $(window).scrollTop();
+      if (imagePos < topOfWindow+600) {
+        $(this).addClass("super-quick-speed slideRight");
+      }
+    });
+  });
+
+  $(window).scroll(function() {
+    $('.anim-left').each(function(){
+    var imagePos = $(this).offset().top;
+
+    var topOfWindow = $(window).scrollTop();
+      if (imagePos < topOfWindow+600) {
+        $(this).addClass("super-quick-speed slideLeft");
+      }
+    });
+  });
+
+  $(window).scroll(function() {
+    $('.anim-up').each(function(){
+    var imagePos = $(this).offset().top;
+
+    var topOfWindow = $(window).scrollTop();
+      if (imagePos < topOfWindow+650) {
+        $(this).addClass("quick-speed slideUp");
+      }
+    });
+  });
+
+  $(window).scroll(function() {
+    $('.anim-down').each(function(){
+    var imagePos = $(this).offset().top;
+
+    var topOfWindow = $(window).scrollTop();
+      if (imagePos < topOfWindow+650) {
+        $(this).addClass("quick-speed slideDown");
+      }
+    });
+  });    
+
+  setTimeout(function () { $("#filler-three").addClass("is-visible"); },2000)
+
+
+});
+
+</script>

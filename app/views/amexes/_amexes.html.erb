@@ -1,0 +1,122 @@
+<!-- 
+  File: _amexes.html.erb
+  Type: Partial View
+  Use: Entire List of AMEX resources 
+
+  #DEBUGGING SUMMARY 
+   0 Fix Alert(s) 
+   1 Bug Alert(s)     
+-->
+
+<% StockUserList.connection %>
+<%= include_gon %>
+
+<div id="pagewrap">
+ <div id="p-header" class="top"> 
+  <div id="market_title">
+   <div id="p-header-left">
+    <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+     <%= link_to "Back", root_path %>
+    </div>
+   </div>
+   
+   <div id="p-header-center">AMEX</div>
+   
+  <div id="p-header-right">
+   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+     <%= link_to "List", stock_user_lists_path %>
+   </div>
+   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+    <a href="#openModal">Help</a>
+   </div>
+   <div id="openModal" class="modalDialog">
+    <div> <a href="#close" title="Close" class="close">X</a>
+     <h2>Help Desk</h2>
+     <p>Search for a public company of interest, listed on the AMEX.</p></br>
+     <p>Once you've found a company click on explore. This will move you to the next step.</p></br> 
+     <p>Sign in and follow a company to compare or keep track.</p></br>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+   
+ <section id="content" class="right class="right not-visible""> 
+  <div id="headlines-table-wrapper">
+    <table id="list_co" class="display pullDown" data-source="<%= amexes_url(format: "json") %>">
+      <col width="20%" />
+      <col width="60%" />
+      <col width="20%" />
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Company Name</th>
+        <th>Explore</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Server Side. Faster loading for big data. -->
+    </tbody>
+   </table>
+  </div>
+ </section>
+
+ <section id="middle" class="left not-visible">
+  <div id="middle-wrapper">
+    <h2>American Stock Exchange</h2>
+
+    <p>Formerly known as the American Stock Exchange (AMEX), now the NYSE MKT LLC, is an American stock exchange situated in New York City, New York. AMEX was previously a mutual organization, owned by its members. Until 1953, it was known as the New York Curb Exchange.</p>
+    <!-- p>There are tricks to building a table that looks and functions just right, here are mine. This table was built using two seperate tables, an upper and a lower. The upper is used to maintain the position of the static header and the lower provides the scrolling feature for this tables' content. The table window is its own seperate entity and changes dynamically depending on the users specifications. </p--></br>
+    
+    <img src="../assets/amex.jpeg" height="250px" style="float:right; padding:10px;">
+    <p>On January 17, 2008, NYSE Euronext announced it would acquire the AMEX for $260 million in stock; on October 1, 2008, NYSE Euronext completed the acquisition. Before the closing of the acquisition, NYSE Euronext announced that the AMEX would be integrated with the Alternext European small-cap exchange and renamed the NYSE Alternext U.S.
+    In March 2009, NYSE Alternext U.S. was changed to NYSE Amex Equities. On May 10, 2012, NYSE Amex Equities changed its name to NYSE MKT LLC.</p>
+    <!--p>Sometimes It's hard get excited about table data. I have added a few UI features to keep things interesting. A highlighted row and a delayed color change (the button's text) coupled with a slight hint of orange help to set it off. Hover over the button itself and it comes to life too. It is almost impossible not to click it. Click me Click me!</p--></br>
+
+    <p> Post merger, the Amex equities business was branded "NYSE Alternext US". As part of the re-branding exercise, NYSE Alternext US was re-branded as NYSE Amex Equities.</p>
+    <!--p>This table is fully resposive and will look good on any size screen. Try adjusting your browser and watch the table transform. The results are a nice looking table that is compact and user friendly. Other more obvious features are pagination (page controller), list size parameters, search functionality, and column sort.</p-->
+    </br>
+   </div>
+  </section>
+  
+ <div id="p-footer"></div>
+</div>
+
+<div class="modal"></div>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- Ajax function needs reworking script only called upon reload -->
+<!-- Leave scripts in .HTML.ERB Files until issue is resolved. -->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(this).scrollTop(0);
+    $('.right').addClass("slow-speed pullDown is-visible");
+    $('.left').addClass("slow-speed pullDown is-visible");
+    $('.down').addClass("slow-speed pullUp is-visible");
+  });
+
+ $('#list_co').DataTable({
+    "lengthMenu": [[100, 250, 500, 5000], [100, 250, 500, "All"]],
+    "bProcessing": true,
+    "bServerSide": true,
+    "sAjaxSource": $('#list_co').data('source'),
+    "pagingType": "simple_numbers",
+    "pageLength": 250,
+    "order": [ 0, 'asc' ],
+     "scrollY": '425px',
+     "fixedHeader": true,
+     "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 2 ] },
+      ],
+     "oLanguage": {
+         "sProcessing": "<img src='../assets/load.gif' height='50' width='50'>"
+     },
+     "processing": true,
+     "bInfo" : false,
+  });
+</script>
+
+
+

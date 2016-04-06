@@ -1,0 +1,2 @@
+module AmexesHelper
+end

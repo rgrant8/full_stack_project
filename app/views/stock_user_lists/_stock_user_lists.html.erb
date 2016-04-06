@@ -1,0 +1,472 @@
+<!-- 
+  File: _stock_user_lists.html.erb
+  Type: Partial View
+  Use: List Resources from all three tables on one graph 
+
+  #DEBUGGING SUMMARY 
+   1 Fix Alert(s) 
+   2 Bug Alert(s)     
+-->
+
+<%= include_gon %>
+<% List.connection %>
+<% Amex.connection %>
+<% Nyse.connection %>
+<% StockUserList.connection %>
+<% yahoo_client = YahooFinance::Client.new %>
+
+<!-- **************** FIX ALERT ******************* -->
+<!-- Marquee rb should be moved into SUL Controller and called here.  -->
+<!-- Leave in .HTML.ERB File until resolved. -->
+<!-- **************** FIX ALERT ******************* -->
+
+<!-- MARQUEE EQUATIONS -->
+<% if current_user %>   
+  <% $popular_stocks = Array.new %>
+  <% users = StockUserList.all %>
+  <% users.each do |e| %> 
+    <% $popular_stocks.push(e.stock_name) %>   
+  <% end %> 
+  
+  <% if $popular_stocks.size < 10 %>
+    <% $pop_stock = Array.new %>
+      <% $pop_stock = ["WIN", "MSFT", "AAPL", "HCBK", "AMAT", "SIRI", "MU", "QQQ", "INTC", "CSCO", "FB", "AAL", "MAT", "NVDA", "TSLA", "KRFT", "QCOM", "JD", "YHOO", "CMCSA"] %> 
+    <% $popular_stocks = $popular_stocks + $pop_stock %>
+  <% end %>
+<% end %>
+
+<% if !current_user %>
+ <% $popular_stocks = Array.new %>
+  <% $popular_stocks = ["WIN", "MSFT", "AAPL", "HCBK", "AMAT", "SIRI", "MU", "QQQ", "INTC", "CSCO", "FB", "AAL", "MAT", "NVDA", "TSLA", "KRFT", "QCOM", "JD", "YHOO", "CMCSA"] %>
+<% end %>
+
+<% results = Array.new %>
+<% count = 0 %>
+<% while count <= $popular_stocks.size %> 
+  <% if win_get = yahoo_client.quotes([$popular_stocks[count], "NATU3.SA", "USDJPY=X"], [:symbol, :change, :change_in_percent]) %>
+    <% symbol = win_get[0].symbol %>
+    <% change = win_get[0].change %>
+    <% change_p = win_get[0].change_in_percent %>
+    <% results.push(symbol, change, change_p) %>  
+    <% count += 1 %>
+  <% else %>
+    Finance Data is Currently Unavailable
+  <% end %>
+<% end %>
+
+<% $counter =0 %>
+
+<div style="display:none;" id="loader" class="cssload-loader">Loading</div>
+
+<div id="pagewrap">
+ <div id="p-header" style=" border:none; margin-bottom: 5px;">
+  
+  <!-- p id="notice" style="color: white;"><%= notice %></p -->
+ </div>
+
+<!-- SUB MENU -->
+ <div id="p-header" class="top"> 
+    <div id="market_title">
+    <div id="marq" class="scroller">
+   <div class="marquee" id="mycrawler"> 
+    <div class="Table" style="visibility: hidden;"> 
+     <% while $counter < results.size %>
+      <tbody> 
+      <div class="Cell">
+        <span style="color:white"><%= results[$counter] + ":"%></span>
+      </div>
+        <% $counter +=1 %>  
+      <div class="Cell">
+       
+       <%if results[$counter].to_f < 0%>
+        <p style="color:orange">
+          <%= results[$counter] %>
+          <% $counter +=1 %>
+          <%= results[$counter] %>
+        </p>
+       <% else %>
+        <p style="color:#3ce53c">
+          <%= results[$counter]  %>
+          <% $counter +=1 %>
+          <%= results[$counter] %>
+        </p>
+       <% end %>
+     
+      </div>
+      </tbody>
+        <% $counter +=1 %>
+        <% end %>
+      </div>
+    </div>
+   </div>  
+
+  <div id="p-header-left">
+    <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+      <%= link_to "Home", root_path %>
+      <%#= link_to 'Back', javascript:history.back() %>
+    </div>
+  </div>
+  
+  <div id="p-header-center">List</div>
+    <div id="p-header-right">
+      <div id="saved-btn" class="buttonrefresh btn btn-primary btn-xs" role="button">
+        Hide Series
+      </div>   
+      <div id="saved-btn" class="hd btn btn-primary btn-xs" role="button">
+        Hide Marquee
+      </div>
+      <!--div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+       <%#= link_to "Info", root_path %>
+      </div-->
+     </div>
+   </div>
+ </div>
+
+<!-- Table -->
+ <section id="content" class="left not-visible">
+  <div id="middle-wrapper"> 
+   <div class="table-responsive" style="overflow:hidden">
+    <table class="table table-hover">
+      <col width="10%" />
+      <col width="46%" />
+      <col width="13%" />
+      <col width="11%" />
+      <col width="10%" />
+      <col width="10%" />
+      <thead>
+        <tr style="text-align: left;">
+          <th> Symbol </th>
+          <th> Name </th>  
+          <th> Exchange </th>
+          <th colspan="1"></th>
+          <th colspan="1"></th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+  <div class="table-responsive">
+    <table id="all-market-table" class="table table-hover">
+      <col width="10%" />
+      <col width="49%" />
+      <col width="13%" />
+      <col width="16%" />
+      <col width="10%" />
+      <col width="7%" />
+    <tbody>
+     <% @stock_user_lists.each do |stock_user_list| %>
+      <% if stock_user_list.users_id == @cur_user %>   
+       <% List.all.each do |list| %>
+        <% if stock_user_list.stock_name == list.symbol %>
+         <tr>
+          <td><%= list.symbol %></td>
+          <td><%= list.name %></td>  
+          <td><%= list.list_type %></td>
+          <td><%= link_to 'Unfollow', stock_user_list,
+                  :class => "delete", :id =>"delete-link", method: :delete %></td>
+          <td>
+            <%= link_to list,  :method => :get do %>
+              <button type="button" class="btn-primary btn-xs explore btn t2" >
+                Explore
+              </button>
+            <% end %>
+          </td>
+
+          <td>
+           <button type="button" id="main-button-table" 
+                   class="editbtn btn-primary btn-xs btn t2">
+             Hide
+            </button>
+          </td>
+         </tr>
+        <% end %>
+       <% end %>
+
+       <% Amex.all.each do |list| %>
+        <% if stock_user_list.stock_name == list.symbol %>
+         <tr>
+          <td><%= list.symbol %></td>
+          <td><%= list.name %></td>  
+          <td><%= list.list_type %></td>
+          <td><%= link_to 'Unfollow', stock_user_list,
+                  :class => "delete", :id =>"delete-link", method: :delete %></td>
+          <td>
+            <%= link_to list,  :method => :get do %>
+              <button type="button" class="btn-primary btn-xs explore btn t2" >
+                Explore
+              </button>
+            <% end %>
+          </td>
+
+          <td>
+           <button type="button" id="main-button-table" 
+                   class="editbtn btn-primary btn-xs btn t2">
+             Hide
+            </button>
+          </td>
+         </tr>
+        <% end %>
+       <% end %>
+
+       <% Nyse.all.each do |list| %>
+        <% if stock_user_list.stock_name == list.symbol %>
+         <tr>
+          <td><%= list.symbol %></td>
+          <td><%= list.name %></td>  
+          <td><%= list.list_type %></td>
+          <td><%= link_to 'Unfollow', stock_user_list,
+                  :class => "delete", :id =>"delete-link", method: :delete %></td>
+          <td>
+            <%= link_to list,  :method => :get do %>
+              <button type="button" class="btn-primary btn-xs explore btn t2" >
+                Explore
+              </button>
+            <% end %>
+          </td>
+
+          <td>
+           <button type="button" id="main-button-table" 
+                   class="editbtn btn-primary btn-xs btn t2">
+             Hide
+            </button>
+          </td>
+         </tr>
+        <% end %>
+       <% end %>
+      <% end %>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<!-- CHART -->
+  <section id="middle"  class="right not-visible">
+    <div id="container"> 
+      <span style="color: #333; font-size: 18px; text-align: center">Your List is empty!? Explore and Follow a stock to add it here.<span>
+    </div> 
+  </section>
+  
+  <div id="p-footer">
+  </div>
+</div>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- Ajax function needs reworking script only called upon reload -->
+<!-- Leave scripts in .HTML.ERB Files until issue is resolved. -->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+
+<script type="text/javascript">
+// *** SEE NOTE ABOVE FOR WHY JS LOCATED IN HTML FILE ***
+// SECONDARY MENU SCRIPTS -->
+  $('.hd').click(function(){
+   if (document.getElementById('marq').style.display == 'none'){
+     $('.scroller').css({'display':'table'});
+     $('.hd').html('Hide Marquee')
+    }else{
+     $('.scroller').css({'display':'none'});
+     $('.hd').html('Show Marquee')
+    }
+  });
+
+ $(document).ready(function() {
+    var running = 0;
+    $('.load').click(function(){ 
+       if (!running){
+         running = 1;
+         $('.cssload-loader').css({'display':'block'});
+         $('#pagewrap').css({'opacity':'0.4'});
+        }else{}
+    });
+
+    $(".reset").val('');
+    $(this).scrollTop(0);
+    $('.right').addClass("default-speed stretchRight is-visible");
+    $('.left').addClass("default-speed stretchLeft is-visible");
+    $('.top').addClass("default-speed slideExpandUp is-visible");
+
+});
+
+// HIGHSTOCK SCRIPTS -->
+ $(function(){
+  var seriesOptions = [],
+  seriesCounter = 0,
+  names = gon.master_list
+  createChart = function () {
+    $('#container').highcharts('StockChart', {
+      rangeSelector: {
+        selected: 3
+      },
+
+      yAxis: {
+        labels: {
+          formatter: function(){
+            return (this.value > 0 ? ' + ' : '') + this.value + '%';
+          }
+      },
+        
+        plotLines: [{
+          value: 0,
+          width: 2,
+          color: 'silver'
+        }]
+      },
+
+      credits : {
+        enabled: false
+      },
+
+      plotOptions: {
+        series: {
+          compare: 'percent'
+        }
+      },
+
+      tooltip: {
+        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+        valueDecimals: 2
+      },
+
+      series: seriesOptions
+    });
+   };
+
+    $.each(names, function(i, name){
+      seriesOptions[seriesCounter] = {
+        name: name,
+        data: gon.master_data[seriesCounter]  
+      };
+      
+      seriesCounter += 1;
+      
+      if(seriesCounter === names.length){
+        createChart();
+      } // loading data asynchronously, don't know what order will arrive.
+    }); // keep a counter; create the chart when all the data is loaded.
+
+  $(document).ready(function(){
+    $('.editbtn').click(function(){
+      $(this).html($(this).html() == 'Hide' ? 'Show' : 'Hide');
+      $('.buttonrefresh').html('Hide Series')
+    });
+
+    var chart = $('#container').highcharts(),
+      $button = $('#buttonshow');
+    
+    $("table tr .editbtn").click(function (e) {
+      var series = chart.series[$(this).closest('td').parent()[0].sectionRowIndex];
+      if (series.visible) {
+          series.hide();
+      }else{
+          series.show();
+      }
+     });
+      
+    $button = $('.buttonrefresh');
+    $button.click(function() {
+      var series = chart.series[0];
+      if (series.visible) {
+        $(chart.series).each(function(){
+          this.setVisible(false, false); }); 
+          $button.html('Show Series');
+          $("table tr .editbtn").html('Show');
+      }else{
+        $(chart.series).each(function(){
+          this.setVisible(true, false); });
+            chart.redraw();
+          $button.html('Hide Series');
+        $("table tr .editbtn").html('Hide');
+      }
+    });
+  });
+});
+
+// "TABLE SCRIPTS" -->
+ $(document).ready(function(){
+  $('a.delete').click (function(){
+   if(confirm("Are you sure?")){
+    var row = $(this).closest("tr").get(0);
+    $.post(this.href, {_method:'delete'}, null, "script");
+    $(row).hide();
+    return false;
+   }else{
+   return false;
+  }
+ });
+
+  var chart = $('#container').highcharts();
+  $("table tr a.delete").click(function (e) {
+    var series = chart.series[$(this).closest('td').parent()[0].sectionRowIndex];
+    if (series.visible) {
+      series.remove();//hide();
+    }else{
+      series.show();
+    }
+  });
+ });
+
+ setTimeout(function () { $(".Table").addClass("is-visible"); }, 5000)
+
+</script>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- Marquee CSS not loading from external file.  -->
+<!-- Leave styling in .HTML.ERB File until resolved. -->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
+
+<style type="text/css">
+  .Table
+  {
+    display: table;
+      background: #2A6496;
+
+  }
+  .Title
+  {
+    display: table-caption;
+  }
+  .Heading
+  {
+    display: table-row;
+    font-weight: bold;
+    text-align: left;
+  }
+  .Row
+  {
+    display: table-row;
+  }
+  .Cell
+  {
+    display: table-cell;
+    border-width: thin;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 20px;
+    font-size: 13px;
+  }
+</style>              
+
+<!--  MARQUEE SCRIPTS -->
+<script type="text/javascript">
+            marqueeInit({
+                uniqueid: 'mycrawler',
+                style: {
+                  'color': '#eeeeee',
+                  'width': '100%',
+                  'height' : '30px',
+                  'padding-top': '5px',
+                  'overflow': 'hidden'
+                },
+                direction: 'right',
+                inc: 5, //speed - pixel increment for each iteration of this marquee's movement
+                mouse: 'cursor driven', //mouseover behavior ('pause' 'cursor driven' or false)
+                moveatleast: 1,
+                neutral: 150
+            });
+</script> 
+
+
+
+

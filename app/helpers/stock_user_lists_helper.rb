@@ -1,0 +1,2 @@
+module StockUserListsHelper
+end

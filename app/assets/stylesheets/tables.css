@@ -1,0 +1,552 @@
+/*DEMO*/
+
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+table { 
+  border-collapse: collapse; 
+  //padding:10px;
+  font-size: smaller;
+  width: 100%;
+  table-layout: fixed;
+  color:#555;
+  //margin: 10px;
+}
+
+table{
+  border: none;
+}
+
+table > tbody > tr > td:nth-child(3) {
+      border-right: solid 3px transparent;
+    }
+
+    table > tbody > tr:hover > td:nth-child(1){
+      //border-left: solid 1px #F0AB00;
+    }
+
+    table > tbody > tr:hover > td:nth-child(3){
+      border-right: solid 3px #F0AB00;
+    }
+
+    table > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th
+    {
+      color: black;
+     // background-color: #2a6496;
+    }
+
+    table > tbody > tr:hover > td.sorting_1{
+      color: black;
+    }
+
+    table > tbody > tr:hover > td > ul > li > div > span > span.front{
+      color: white;
+    /*box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+
+      -webkit-animation-name: shift; 
+      -webkit-animation-duration: .5s; 
+      animation-name: shift;
+      animation-duration: .5s;*/
+    background-color: #3db2e1;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button{
+    /*box-sizing: border-box;*/
+    /*display: inline-block;*/
+    /* min-width: 1.5em; */
+    padding: 0.1em .2em;
+    /*margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: #333333 !important;
+    border: 1px solid transparent;*/
+    }
+
+
+.scroll-pane {
+   width: 200px;
+   height: 400px;
+   //background-color: #496e91; 
+   overflow-x: scroll;
+   overflow-y: hidden;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar {
+    width: 15px;
+    overflow-y: hidden;
+    background-color: white;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px #496e91; /*rgba(0,0,0,0.3);*/ 
+    border-radius: 0px;
+    overflow-y: hidden;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    -webkit-box-shadow: inset 0 0 6px #496e91; /*rgba(0,0,0,0.5);*/ 
+    background: #496e91;
+    overflow-y: hidden;
+}
+
+.table-hover > tbody > tr:hover > td > a{
+  color: #aaa;
+}
+
+.table-hover > tbody > tr:hover > td {
+      background-color: #f4f4f4;
+      //border-right: solid 5px white;
+      //color:white;
+    } 
+
+table#headlines td {
+    border: none;
+    font-size: 12px !important;
+}
+
+table#headlines td a{
+  color: #333 !important;
+}
+
+table#headlines td a:hover{
+  color: #428bca; !important;
+}
+
+
+table#list_co td {
+    border: none;
+    font-size: 13px !important;
+}
+
+table#list_co td a, table#all-markets-table td a{
+  padding:5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: solid 1px white;
+  background-color: #37A;
+  //background-color: rgba(7,105,167, .4);
+  border-radius: 40px;
+}
+
+table#list_co td a:hover{
+  //color: #428bca !important;
+  //font-weight: bold;
+  //font-size: 12px;
+  box-shadow: 0px 2px 5px #bbb !important;
+  color: white !important;
+
+}
+
+/*END IMPORTANT*/
+
+.table-responsive{
+  border-top: solid 1px #ccc;
+  border-bottom: none;
+  overflow-x: hidden;
+  max-height: 380px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 6px;
+  box-shadow: 0px 4px 10px #bbb !important;
+
+#table-space{
+  border-top:solid 25px black;
+  //overflow-y: scroll;
+  //max-height: 250px;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd), { 
+  background: #eee; 
+}
+th { 
+  //background: #333; 
+  color: #000; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 7px; 
+  //border-bottom: 1px solid #ccc; 
+  text-align: left; 
+}
+
+td{
+  //padding: 7px;
+  //padding-left: 16px;
+}
+
+th:hover a, th a {
+  color: black; 
+  text-decoration: none;
+}
+
+thead{
+ border-bottom: solid 2px #555;
+}
+
+.td-size { padding:0px;}
+
+
+
+ #t-container
+        {
+          width: 100%;
+          display: table;
+          margin: auto;
+          //border: solid 1px white;
+          //border-bottom: solid 2px white;
+          //background-color: rgba(255, 255, 255, .8);
+          //float: left;
+        }
+
+        .t-containerrow
+        {
+          clear:both;
+          overflow:hidden;
+          width: auto;
+          display: table-row;
+          //background-color:rgba(42, 100, 150, .5);
+          color: white; 
+          font-weight: bold;  
+        }
+
+        #t-col1
+        {
+          width: auto;
+          display: table-cell;
+          padding-left: 3px;
+          //border-right: solid 1px white;
+          /*border-left: solid 1px white;*/
+        }
+
+        #t-col-fill{
+          display: table-cell;
+          width: auto;
+          padding: 0px; 
+          padding-left: 0px;
+          /*border-right: solid 1px white;*/
+        }
+
+        #t-col2
+        {
+          display: table-cell;
+          width: auto;
+          padding-right: 0px;
+          margin-bottom: -5px; 
+          float:right;  
+        }
+
+        #t2
+        {
+           margin-bottom: -3px;
+           display: table-cell;
+        }
+
+    
+    .table-hover > tbody > tr:hover > td {
+     // color:white;
+    } 
+
+    .table-hover > tbody > tr > td:nth-child(1){
+      //border-left: solid 1px white;
+    }
+
+    table#header-fixed.table.table-hover > tbody > tr > td > a.move_to{
+      color: #555;  
+    }
+
+    .move_to{
+  color: #428bca;
+  text-decoration: none;
+}
+
+    .Table
+{
+  display: table;
+}
+
+.Title
+{
+   display: table-caption;
+}
+
+.Heading
+{
+  display: table-row;
+  font-weight: bold;
+  text-align: left;
+}
+  
+.Cell
+{
+  display: table-cell;
+  /*border: solid;*/
+  border-width: thin;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 20px;
+  font-size: 13px;
+}
+
+.table_view-mylist{
+  margin-top: -28px;
+}
+
+  #load{
+    padding-left: 125px;
+    padding-right: 105px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 36px;
+    color: white;
+    border-radius: 1.3em;
+    border: solid 3px #fff;
+    background-color:#2a6496;
+  }
+
+  #spinner{
+    position: fixed;
+    top: 48%;
+    left: 35%;
+    z-index: 1;
+    
+  }
+
+
+    
+
+/*
+     color: #fff;
+    padding: 4px 8px 5px;
+    border: 1px solid #9fa3a7;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+    
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background-color: #2a6496;
+    box-shadow:
+        0 1px 0 rgba(0,0,0,.08),
+        inset 0 1px 2px rgba(255,255,255,.67),
+        inset 0 -1px 0 rgba(0,0,0,.14);
+    background-image: -moz-linear-gradient(90deg, #a3a9ad 0%, #c5c9cd 100%);
+    background-image: -o-linear-gradient(90deg, #a3a9ad 0%, #c5c9cd 100%);
+    background-image: -webkit-linear-gradient(90deg, #a3a9ad 0%, #c5c9cd 100%);
+    background-image: linear-gradient(90deg, #a3a9ad 0%, #c5c9cd 100%);
+*/
+}
+
+    .table-hover > thead > tr > th:nth-child(2){
+      //padding-left: 12px;
+    }
+
+    .table-hover > thead > tr > th:nth-child(2){
+     
+    }
+
+    .table-hover > thead > tr > th:nth-child(3){
+      
+    }
+
+    .table-hover > tbody > tr:hover > td > ul > li > div > span > span.back{
+      //box-sizing: border-box;
+      //-moz-box-sizing: border-box;
+      //-webkit-box-sizing: border-box;
+      //border: solid 5px white;
+      text-decoration: underline;
+    }
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes shift {
+    from {
+      //background-color: #2a6496;
+      color: black;
+    }
+    to {
+      //background-color: #3db2e1;
+      color: white;
+    }
+}
+    
+
+
+
+  .table-hover th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.table-hover th .asc:after { 
+  content: "\25b2";
+  color:red;
+}
+
+.table-hover th .desc:after { 
+  content: "\25bc";
+  color:red;
+}
+
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr, #tablecontainer { 
+    display: block; 
+  }
+
+  #fix-t{
+    position: fixed
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    display: inline-flex;
+    border: none;
+  }
+  
+  tr { border: 1px solid #ccc; }
+  
+  td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+  }
+  
+  td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+  }
+  
+  /*
+  Label the data
+  */
+  .table-hover td:nth-of-type(1):before { content: "Ticker"; }
+  .table-hover td:nth-of-type(2):before { content: "Company"; }
+  .table-hover td:nth-of-type(3):before { content: "Sector"; }
+}
+
+
+@media only screen and (max-width: 410px)  {
+    
+    #t-col2{
+      padding: 5px;
+      text-align: center;
+      padding:none;
+      margin: auto;
+      margin-bottom: 1px;
+      display: table;
+      float: none;
+    }
+
+    #t-col1{
+      padding:none;
+      display: table;
+      margin-right:auto; 
+      margin-left:auto;
+      border: none;
+      padding:none;
+      right:50%;
+    }
+
+    #t-col-fill{
+      display: none;
+      /*border-right: solid 1px white;*/
+    }
+    
+    div.t-containerrow{
+      display: block;
+    }    
+
+    .gap{
+      display: none;/*tables.css*/
+    }
+    .digg_pagination a, .digg_pagination span, .digg_pagination em{display: block;}/*tables.css*/
+}
+
+
+
+
+element.style {
+}
+#per_page.a {
+    padding: 5px;
+}
+* {
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+select#per_page {
+      border-radius: 5px;
+      margin:5px;
+      margin-left: -4px;
+      //background: #496e91;
+      //color: white;
+      //min-height: 10px;
+}
+
+#container{
+  //border: solid 2px black;
+  //margin-top:10px;
+  //margin-right: 25px;
+  //margin-left: 25px;
+}
+
+#container{ 
+  min-height: 528px;
+  box-shadow: 0px 2px 5px #bbb;
+  //max-width: 310px;
+}
+
+#chart-wrapper{
+  position: relative;
+  overflow: overlay;
+  box-shadow: 0px 2px 5px #bbb;
+}
+
+.row{
+  //text-align: center;
+  background: rgba(7,105,167, 1);
+
+ }
+
+ .row2{
+  text-align: center;
+  width: 100%;
+ }
+
+ #my-list_wrapper {
+    margin: -17px;
+    padding-top: 17px;
+}
+
+#my-list_filter{
+  padding-right: 5px;
+}
+
+#my-list_length{
+  padding-left: 5px;
+}
+

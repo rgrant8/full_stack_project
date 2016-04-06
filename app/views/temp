@@ -1,0 +1,128 @@
+<h1>Listing lists</h1>
+
+<h2> Import Lists</h2>
+
+<%= form_tag import_lists_path, multipart: true do %>
+   <%= file_field_tag :file %>
+   <%= submit_tag "Import" %>
+   <%= link_to 'New List', new_list_path %>
+<% end %>
+
+<br>
+
+<%= form_tag(query_path, method: "get") do  %>
+    <h3>Lookup Stocks by Name</h3>
+    <%= text_field_tag(:query, nil, :placeholder => 'Enter Company Name') %>
+    <%= submit_tag("Submit") %> 
+    <%= link_to 'Start Over', lists_path %>
+<% end %>
+
+
+
+<br><br>
+
+<br><br>
+
+<%= current_user.id %>
+
+<table>
+
+<% if @query_text %>
+  <table>
+    <thead>
+      <tr>
+        <th> Symbol </th>
+        <th> Name </th>
+        <!--th> Market </th-->
+        <th> Ipo </th>
+        <th> Country </th>
+        <th> Sector </th>
+        
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+  <% if @name %>
+     <tbody>
+      <% @lists_by_name.each do |list| %>
+       
+       <tr>
+          <td><%= list.symbol %></td>
+          <td><%= list.name %></td>  
+          <!--td><%#= list.market %></td-->
+          <td><%= list.country %></td>
+          <td><%= list.ipo %></td>
+          <td><%= list.sector %></td>
+          <td><%= link_to 'Show', list %></td>
+          <td><%= link_to 'Edit', edit_list_path(list) %></td>
+          <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+        
+        <%= form_for StockUserList.new do |f| %>
+          <%= f.hidden_field :lists_id, value: list.id %>
+          <td><%= f.submit "Follow"%></td>
+        <% end %>
+<% end %>
+        </tr>
+
+         
+
+      <% end %>
+     </tbody>
+   
+  
+
+  <% if @symbol %>
+    <tbody>
+      <% @lists_by_symbol.each do |list| %>
+        <tr>
+          <td><%= list.symbol %></td>
+          <td><%= list.name %></td>  
+          <!--td><%#= list.market %></td-->
+          <td><%= list.country %></td>
+          <td><%= list.ipo %></td>
+          <td><%= list.sector %></td>
+          <td><%= link_to 'Show', list %></td>
+          <td><%= link_to 'Edit', edit_list_path(list) %></td>
+          <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+    </table>
+  
+<% else %>
+ <table>
+  <thead>
+    <tr>
+      <td><%= sortable "symbol" %></td>
+      <td><%= sortable "name" %></td>  
+      <!--td><%#= sortable "market" %></td-->
+      <td><%= sortable "country" %></td>
+      <td><%= sortable "ipo" %></td>
+      <td><%= sortable "sector" %></td>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+      <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= list.symbol %></td>
+        <td><%= list.name %></td>  
+        <!--td><%#= list.market %></td-->
+        <td><%= list.country %></td>
+        <td><%= list.ipo %></td>
+        <td><%= list.sector %></td>
+        <td><%= link_to 'Show', list %></td>
+        <td><%= link_to 'Edit', edit_list_path(list) %></td>
+        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+        
+        <%= form_for StockUserList.new do |f| %>
+          <%= f.hidden_field :lists_id, value: list.id %>
+          <td><%= f.submit "Follow"%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+ <% #end %>
+ <% end %>

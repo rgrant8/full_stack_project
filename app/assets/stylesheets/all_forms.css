@@ -1,0 +1,152 @@
+
+#chart, #list_wrapper{
+  margin-left:auto;
+  margin-right:auto;
+  //height:100vh;
+  //background-color: green;
+  position: relative;
+  float: left;
+}
+
+#chart{
+	float: none;
+	background-color: black;
+	padding-top: 70px;
+	background: url("../assets/stars.jpg") top center no-repeat fixed;
+  	background-size: cover;
+  	margin-bottom: 15px;
+}
+
+.form-page-wrapper{
+	max-width: 1179px;
+    margin: auto;
+    height: auto;
+    display: table;
+}
+
+#chart_spacer{
+	background-color: rgba(193,193,193,.75);
+	max-width: 1199px;
+	margin: auto;
+	margin-top: 25px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-radius: 15px;
+}
+
+#market_title{
+  color: #e06c3d;
+  padding: 7px;
+  font-size: 25px;
+  background-color: #2A6496;
+  min-height: 30px;
+  padding-bottom: 13px;
+}
+
+.button{
+   color: #bbbbbb; 
+   height: 100%;
+   border: solid 1px black;
+   margin: auto;
+   padding: 10px;
+   text-align: center;
+}
+
+#button-wrapper{
+	//border:solid 1px black;
+	background-color: #3591cc;
+	margin:3px;
+	display: inline-block;
+	border-bottom: solid 8px #3591cc;
+}
+
+#button-wrapper:hover{
+}
+
+
+/* 3D Blocks */
+
+/* basic menu styles */
+.block-menu {
+	display: table-row;
+    margin: auto;
+}
+
+.block-menu li {
+	display: inline-block;
+}
+
+.block-menu li a {
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	font-family: 'Passion One', Arial, sans-serif;
+	font-smoothing: antialiased;
+	text-transform: uppercase;
+	overflow: visible;
+	line-height: 20px;
+	font-size: 24px;
+	padding: 15px 10px;
+
+}
+
+/* animation domination */
+.three-d {
+	perspective: 200px;
+	transition: all .07s linear;
+	position: relative;
+	cursor: pointer;
+	text-align: center;
+}
+	/* complete the animation! */
+	.three-d:hover .three-d-box, 
+	.three-d:focus .three-d-box {
+		transform: translateZ(-25px) rotateX(90deg);
+	}
+
+.three-d-box {
+	transition: all .3s ease-out;
+	transform: translatez(-25px);
+	transform-style: preserve-3d;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* 
+	put the "front" and "back" elements into place with CSS transforms, 
+	specifically translation and translatez
+*/
+.front {
+	transform: rotatex(0deg) translatez(25px);
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+   // border: solid 5px #f4f4f4;
+}
+
+.back {
+	transform: rotatex(-90deg) translatez(25px);
+	color: #ffe7c4;
+
+}
+
+.front, .back {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	padding: 15px 10px;
+	color: black;
+	pointer-events: none;
+	box-sizing: border-box;
+}
+
+.back{background-color: #3db2e1; color:white;}
