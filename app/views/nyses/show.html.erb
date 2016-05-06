@@ -11,61 +11,62 @@
 <%= include_gon %>
 <% StockUserList.connection %>
 <div id="show-wrapper">
-  <div id="pagewrap">
-   <div id="p-header" class="top"> 
-    <div id="market_title">
-     <div id="p-header-center">NYSE</div>
+ <div id="pagewrap">
+  <div id="p-header" class="top"> 
+   <div id="market_title">
+    <div id="p-header-center">NYSE</div>
      <div id="p-header-left">
       <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
        <%= link_to "Back", nyses_path %>
       </div>
-      
-      <div id="p-header-right">
-        <% if current_user %>      
-         <% @in_List = false %>
-          <% users = StockUserList.all %>
-            <% users.each do |e| %>
-              <% if current_user.id == e.users_id && @nyses.id == e.lists_id %> 
-                <% @in_List = true %>
-              <% end %>  
+     </div>
+     
+     <div id="p-header-right">
+      <% if current_user %>      
+       <% @in_List = false %>
+        <% users = StockUserList.all %>
+          <% users.each do |e| %>
+            <% if current_user.id == e.users_id && @nyses.id == e.lists_id %> 
+              <% @in_List = true %>
             <% end %>  
-          <% end %> 
+          <% end %>  
+        <% end %> 
 
-        <% if current_user %>      
-          <% if @in_List %>  
-            <div id="saved-btn" style="cursor: default;" class="followed btn btn-primary btn-xs" role="button">
-              Saved
-            </div>  
-          <% else %>
-            <% @stock_user_list = StockUserList.new %>
-            <%= form_for @stock_user_list, remote: true do |f|%>        
-            <%= f.hidden_field :lists_id, value: @nyse.id %>
-            <%= f.hidden_field :users_id, value: current_user.id %>
-            <%= f.hidden_field :stock_name, value: @nyse.symbol %>
-             <% if @nyse.alive != false %> 
-              <div id="saved-btn" class="follow btn btn-primary btn-xs" role="button">
-               Follow
-              </div> 
-             <% else %>
-               Delisted
-             <% end %>
-            <% end %>  
-          <% end %>
+      <% if current_user %>      
+        <% if @in_List %>  
+          <div id="saved-btn" style="cursor: default;" class="followed btn btn-primary btn-xs" role="button">
+            Saved
+          </div>  
+        <% else %>
+          <% @stock_user_list = StockUserList.new %>
+          <%= form_for @stock_user_list, remote: true do |f|%>        
+          <%= f.hidden_field :lists_id, value: @nyse.id %>
+          <%= f.hidden_field :users_id, value: current_user.id %>
+          <%= f.hidden_field :stock_name, value: @nyse.symbol %>
+           <% if @nyse.alive != false %> 
+            <div id="saved-btn" class="follow btn btn-primary btn-xs" role="button">
+             Follow
+            </div> 
+           <% else %>
+             Delisted
+           <% end %>
+          <% end %>  
         <% end %>
+      <% end %>
 
-        <% if !current_user %>   
-         <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
-            <%= link_to "Follow", new_user_session_path %>
-         </div>
-        <% end %>
-        
-         <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
-          <%= link_to "List", stock_user_lists_path %>
-         </div>
-         <!-- div id="follow-btn" class="btn btn-primary btn-xs" role="button">
-          <%#= link_to "Info", root_path %>
-         </div-->  
+      <% if !current_user %>   
+       <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+          <%= link_to "Follow", new_user_session_path %>
        </div>
+      <% end %>
+
+      <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+        <%= link_to "List", stock_user_lists_path %>
+      </div>
+      
+       <!--div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+        <%#= link_to "Info", root_path %>
+       </div-->  
      </div>
     </div>
    </div>

@@ -1,27 +1,14 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
+ *=_require jquery-ui
  *= require dataTables/jquery.dataTables
  *= require dataTables/extras/dataTables.responsive
- *= require_self
  *= require selectize
  *= require selectize.default
  *= require select2
  *= require select2-bootstrap
  *= require owl.carousel
  *= require owl.theme
- *=_require jquery-ui
  *= require watchlist
- *= require my_style
  *= require styles
  *= require pagination
  *= require tables
@@ -31,12 +18,13 @@
  *= require all_forms
  *= require button
  *= require nyses
- 
+ *= require_self
+
  */
 /*
- *= require_jquery-ui-bootstrap
- *= require_twitter/bootstrap
- *= require_bootstrap_and_overrides
+ *=* require_jquery-ui-bootstrap
+ *=* require_twitter/bootstrap
+ *=* require_bootstrap_and_overrides
 */
 
 
@@ -53,8 +41,7 @@
 }
 
 /* LOADING MODAL */
-.modal {
-    display:    none;
+#loading {
     position:   fixed;
     z-index:    1000;
     top:        0;
@@ -69,21 +56,6 @@
     -webkit-box-shadow: 0px 6px 5px #000; 
     box-shadow: 0px 6px 5px #000;
     background-size: 100px 100px;
-
-}
-
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-body.loading {
-    overflow: hidden;
-    margin-right: 15px; 
-}
-
-/* Anytime the body has the loading class, our
-   modal element will be visible */
-body.loading .modal {
-    display: block;
-    box-shadow: 1px 1px 3px #000;
 }
 
 #contents{
@@ -200,19 +172,19 @@ body{
 }
 
 #section-one{
-  height: 465px;
-    margin-left: auto;
-    margin-right: auto;
-    background-repeat: no-repeat;
-    background-position: auto center;
-    max-width: 100%;
-    max-height: 100%;
-    overflow: hidden;
-    text-align: center;
-    z-index: 499;
-    background: url("../assets/hotb.jpg") top center no-repeat fixed;
-    background-size: cover;
-    position: relative;
+  height: 510px;
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: no-repeat;
+  background-position: auto center;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  text-align: center;
+  z-index: 499;
+  background: url("../assets/central_park.jpg") top center no-repeat fixed;
+  background-size: cover;
+  position: relative;
 }
 
 #img{
@@ -281,7 +253,7 @@ body{
     background: -webkit-gradient(linear,left top,left bottom,from(#000),to(#383838));
     background: -webkit-linear-gradient(top,#000,#383838);
     background: -moz-linear-gradient(top,#000,#383838);
-    background: -ms-linear-gradient(top,#00,#383838);
+    background: -ms-linear-gradient(top,#000,#383838);
     background: -o-linear-gradient(top,#000,#383838);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000,endColorstr=#383838,GradientType=0);
 }
@@ -321,7 +293,7 @@ body{
 }
 
 #filler-three{
-  min-height: 715px;
+  min-height: 800px;
   background-color: #000;
   z-index: -999;
   background: url("../assets/spot.jpg") top center no-repeat fixed;
@@ -481,21 +453,10 @@ p{
 }
 
 #foot{
-  /*
-    background-color: #383838;
-    background: -webkit-gradient(linear,left top,left bottom,from(#383838),to(#000));
-    background: -webkit-linear-gradient(top,#383838,#000);
-    background: -moz-linear-gradient(top,#383838,#000);
-    background: -ms-linear-gradient(top,#383838,#000);
-    background: -o-linear-gradient(top,#383838,#000);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#383838,endColorstr=#000,GradientType=0);
-    margin-bottom: -15px;
-    border-bottom: solid 20px black;
-  */
     //min-height: 100px;
     text-align: center; 
     color: #f4f4f4;
-    padding-top: 33px;
+    padding-top: 52px;
 }
 a:-webkit-any-link {
   text-decoration: none;
@@ -583,53 +544,6 @@ a:-webkit-any-link {
     color: #fff;
     top: 5px;
 }
-
-/*  Button flash Deprecated
-.flash1{
-  -webkit-animation-delay: 0s; 
-  animation-delay: 0s;
-  -webkit-animation-duration: 4.5s; 
-    animation-duration: 4.5s;
-}
-
-.flash2{
-  -webkit-animation-delay: .75s; 
-  animation-delay: .75s;
-  -webkit-animation-duration: 3.75s; 
-    animation-duration: 3.75s;
-}
-
-.flash3{
-  -webkit-animation-delay: 1.5s; 
-  animation-delay: 1.5s;
-  -webkit-animation-duration: 3s; 
-    animation-duration: 3s;
-}
-
-.flash1, .flash2, .flash3{
-    -webkit-animation-name: example; 
-    animation-name: example;
-    -webkit-animation-iteration-count: 1; 
-    animation-iteration-count: 1;
-    
-}
-
-@-webkit-keyframes example {
-    from {background: rgba(7,105,167, 1);}
-    to {background: rgba(61,178,225, 0.15);
-    //outline: 2px solid #af180e;
-    //outline-offset: -2px;
-  }
-}
-
-@keyframes example {
-    from {background: rgba(7,105,167, 1);}
-    to {background: rgba(61,178,225, 0.15);
-    //outline: 2px solid #af180e;
-    //outline-offset: -2px;
-  }
-}
-*/
 
 .btn{
   //background: rgba(7,105,167, 1);
@@ -799,3 +713,46 @@ opacity:3;
 #show-delay{
   display: table !important;
 }
+
+.big-font{
+  font-size: 70px;
+}
+
+@media only screen and (max-device-width: 480px){
+  #section-one{
+  background: url("../assets/central_park.jpg");
+  background-size: auto;
+  background-position: 57% 0%;
+  }
+  #filler-one{
+  background: url("../assets/nyc.jpg");
+  min-height: 230px;
+  background-repeat: no-repeat;
+  background-size: 160%;
+  }
+  #filler-two{
+  background: url("../assets/p3.png");
+  background-size: 160%;
+  min-height: 230px;
+  background-repeat: no-repeat;
+  background-position-x: 90%;
+  }
+  #filler-three{
+  background: url("../assets/spot.jpg");
+  background-size: auto;
+  background-position: 57% 0%;
+  min-height: 550px;
+  background-size: contain;
+  }
+  .big-font {
+    font-size: 40px !important;
+  }
+  #foot-title{
+    display: block !important;
+  }
+  
+  #main-button3, #main-button4, #main-button5 {
+    display: none;
+  }
+}
+

@@ -3,7 +3,6 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.responsive
-//= require dataTables/jquery.dataTables
 // RailsAjax
 //= require jquery.history
 //= require jquery.rails-ajax
@@ -19,22 +18,19 @@
 //= require_self
 //= require_tree .
 
-$(document).ready(function() {
-  
-  $body = $("body");
-  $(document).on({
-    ajaxStart: function() {
-      timer = setTimeout(function() {
-        $body.addClass("loading"); }, 300); },
-    ajaxStop: function() { 
-      $body.removeClass("loading"); 
-      clearTimeout(timer);
-    }});
 
-  $(this).scrollTop(0);
-   
-  jQuery.ajaxSetup({
-    'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}});
+$(document).ready(function() {  
+
+$(this).scrollTop(0);
+
+  $( document ).ajaxStart(function() {
+   $( "#loading" ).show();
+  });
+
+  $( document ).ajaxStop(function() {
+   $( "#loading" ).hide();
+  });
+
 
   $(document).scroll(function() {
   var dHeight = $(this).height()-$(window).height();

@@ -24,9 +24,6 @@
    
   <div id="p-header-right">
    <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
-     <%= link_to "List", stock_user_lists_path %>
-   </div>
-   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
     <a href="#openModal">Help</a>
    </div>
    <div id="openModal" class="modalDialog">
@@ -37,12 +34,15 @@
      <p>Sign in and follow a company to compare or keep track.</p></br>
     </div>
    </div>
+   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+     <%= link_to "List", stock_user_lists_path %>
+   </div>
   </div>
  </div>
 </div>
 
 
- <section id="content" class="right class="right not-visible""> 
+ <section id="content" class="right not-visible"> 
   <div id="headlines-table-wrapper">
     <table id="list_co" class="display pullDown" data-source="<%= nyses_url(format: "json") %>">
       <col width="20%" />
@@ -83,7 +83,7 @@
   <div id="p-footer"></div>
  </div>
 
-<div class="modal"></div>
+<div id="loading"></div>
 
 <!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
 <!-- Ajax function needs reworking script only called upon reload -->
@@ -91,6 +91,7 @@
 <!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
 
 <script type="text/javascript">
+
   $(document).ready(function(){
     $(this).scrollTop(0);
     $('.right').addClass("slow-speed pullDown is-visible");
@@ -99,11 +100,11 @@
   });
 
  $('#list_co').DataTable({
-    "lengthMenu": [[100, 250, 500, 5000], [100, 250, 500, "All"]],
     "bProcessing": true,
     "bServerSide": true,
     "sAjaxSource": $('#list_co').data('source'),
     "pagingType": "simple_numbers",
+    "lengthMenu": [[100, 250, 500, 5000], [100, 250, 500, "All"]],
     "pageLength": 250,
     "order": [ 0, 'asc' ],
      "scrollY": '425px',
@@ -112,10 +113,11 @@
         { 'bSortable': false, 'aTargets': [ 2 ] },
       ],
      "oLanguage": {
-         "sProcessing": "<img src='../assets/load.gif' height='50' width='50'>"
+         "sProcessing": "<img src='../assets/please_wait.gif' height='50' width='50'>"
      },
      "processing": true,
      "bInfo" : false,
+     "bJQueryUI": true
   });
 
   function modalClose() {

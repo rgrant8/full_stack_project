@@ -14,6 +14,12 @@ class StockDatatable
       iTotalRecords: @table.count,
       iTotalDisplayRecords: market_datas.total_entries,
       aaData: data
+      #aaData:
+      #      [
+      #        ['alue','lue','value'],
+      #        ['value','al','value'],
+      #        ['ualue','ue','value'],
+      #      ]
     }
   end
 

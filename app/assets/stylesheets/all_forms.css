@@ -9,16 +9,16 @@
 }
 
 #chart{
-	float: none;
-	background-color: black;
-	padding-top: 70px;
-	background: url("../assets/stars.jpg") top center no-repeat fixed;
-  	background-size: cover;
-  	margin-bottom: 15px;
+    float: none;
+    background-color: black;
+    padding-top: 70px;
+    background: url("../assets/stars.jpg") top center no-repeat fixed;
+    background-size: cover;
+    margin-bottom: 15px;
 }
 
 .form-page-wrapper{
-	max-width: 1179px;
+    max-width: 1179px;
     margin: auto;
     height: auto;
     display: table;
@@ -101,7 +101,7 @@
 	/* complete the animation! */
 	.three-d:hover .three-d-box, 
 	.three-d:focus .three-d-box {
-		transform: translateZ(-25px) rotateX(90deg);
+	transform: translateZ(-25px) rotateX(90deg);
 	}
 
 .three-d-box {

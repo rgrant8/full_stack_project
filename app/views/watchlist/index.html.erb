@@ -15,7 +15,7 @@
 
 <!-- SECTION TWO -->
 <div id="section-two">
-  <div id="site-title"> 
+  <div id="site-title" class="big-font"> 
     Market View <img id="beta" src="../assets/beta.png">
   </div>
   <div id="inner-title">
@@ -30,7 +30,7 @@
   <div id="pagewrap">
     <div id="s3-1">
       <section id="content" class="anim-down">
-        <div id="heading" class="tl-text-shad">Stock Market Analysis </div>
+        <div id="heading" class="tl-text-shad big-font">Stock Market Analysis </div>
         <ul id="guidance" class="tl-text-shad">
           <li>Interactive Data Review</li>
         </ul>
@@ -39,7 +39,7 @@
 
     <div id="s3-2">
       <section id="middle" class="anim-down">
-        <img id="graph-img" class="tl-div-shad" src="../assets/graphs.jpeg">
+        <img id="graph-img" class="tl-div-shad" src="../assets/graph1.jpeg">
       </section>
     </div>
   
@@ -65,16 +65,16 @@
 
     <div id="s4-1">
       <section id="content" class="anim-up graph-img-left">
-        <img id="graph-img" class="bl-div-shad" src="../assets/graph.jpeg">
+        <img id="graph-img" class="bl-div-shad" src="../assets/graph2.jpeg">
       </section>
     </div>
 
     <div id="s4-2">
       <section id="middle" class="anim-up graph-img-right">
-        <div id="heading" class="bl-text-shad">Individual Assesments</div>
+        <div id="heading" class="bl-text-shad big-font">Individual Assesments</div>
         <ul id="guidance" class="bl-text-shad">
           <!-- li> IPO-to-Date Price Ranges</li -->
-          <li> Follow and Find Company Articles </li>
+          <li> Follow and Read Company Articles </li>
         </ul>
       </section>
     </div>
@@ -86,7 +86,7 @@
   <div id="pagewrap">
     <div id="s5-1">
       <section id="content" class="anim-down content-five">
-        <div id="heading">Complete Market Lists</div>
+        <div id="heading" class="big-font">Complete Market Lists</div>
         <ul id="guidance">
           <li> Easily Find Any Public Company</li>
           <!-- li>- Choose a Market</li>
@@ -129,7 +129,7 @@
 
 <div id="filler-three" class="not-visible">
   <div id="foot-title-wrapper">
-    <div id="foot-title">Let's Choose a Market
+    <div id="foot-title" class="big-font">Let's Choose a Market
     </div>
   </div>
  <div id="intro-btn-wrapper"> 
@@ -201,7 +201,7 @@ $(document).ready(function() {
   });
 
   $("#main-button1").click(function() {
-      $('html,body').animate({ scrollTop: $("#explore-path").offset().top-70}, 1200);
+      $('html,body').animate({ scrollTop: $("#section-three").offset().top-70}, 1200);
   });
 
   $("#main-button3").click(function() {
@@ -222,7 +222,7 @@ $(document).ready(function() {
     window_height = $(window).height();
     $('html,body').animate({ scrollTop: div_offset-window_height+div_height }, 1200);
 
-    setTimeout(function(){$('html, body').animate({scrollTop: $(document).height()}, 1200);}, 4000);
+    setTimeout(function(){$('html, body').animate({scrollTop: $(document).height()}, 1200);}, 2000);
   }); 
 
   $(window).scroll(function() {

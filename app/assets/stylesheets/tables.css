@@ -7,7 +7,7 @@ table {
   border-collapse: collapse; 
   //padding:10px;
   font-size: smaller;
-  width: 100%;
+  //width: 100%;
   table-layout: fixed;
   color:#555;
   //margin: 10px;
@@ -113,7 +113,7 @@ table#headlines td a{
 }
 
 table#headlines td a:hover{
-  color: #428bca; !important;
+  color: #428bca;// !important;
 }
 
 
@@ -149,7 +149,7 @@ table#list_co td a:hover{
   overflow-x: hidden;
   max-height: 380px;
   margin: auto;
-  background-color: rgba(255, 255, 255, 1);
+ // background-color: rgba(255, 255, 255, 1);
   padding: 6px;
   box-shadow: 0px 4px 10px #bbb !important;
 
@@ -161,7 +161,7 @@ table#list_co td a:hover{
 
 /* Zebra striping */
 tr:nth-of-type(odd), { 
-  background: #eee; 
+//  background: #eee; 
 }
 th { 
   //background: #333; 
@@ -443,9 +443,9 @@ only screen and (max-width: 760px),
   /*
   Label the data
   */
-  .table-hover td:nth-of-type(1):before { content: "Ticker"; }
-  .table-hover td:nth-of-type(2):before { content: "Company"; }
-  .table-hover td:nth-of-type(3):before { content: "Sector"; }
+ // .table-hover td:nth-of-type(1):before { content: "Ticker"; }
+ // .table-hover td:nth-of-type(2):before { content: "Company"; }
+ // .table-hover td:nth-of-type(3):before { content: "Sector"; }
 }
 
 

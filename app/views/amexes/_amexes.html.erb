@@ -24,9 +24,6 @@
    
   <div id="p-header-right">
    <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
-     <%= link_to "List", stock_user_lists_path %>
-   </div>
-   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
     <a href="#openModal">Help</a>
    </div>
    <div id="openModal" class="modalDialog">
@@ -36,6 +33,9 @@
      <p>Once you've found a company click on explore. This will move you to the next step.</p></br> 
      <p>Sign in and follow a company to compare or keep track.</p></br>
     </div>
+   </div>
+   <div id="follow-btn" class="btn btn-primary btn-xs" role="button">
+     <%= link_to "List", stock_user_lists_path %>
    </div>
   </div>
  </div>
@@ -82,7 +82,7 @@
  <div id="p-footer"></div>
 </div>
 
-<div class="modal"></div>
+<div id="loading"></div>
 
 <!-- !!!!!!!!!!!!!!!!!!!!!!!! BUG ALERT !!!!!!!!!!!!!!!!!!!!!!!! -->
 <!-- Ajax function needs reworking script only called upon reload -->
@@ -111,7 +111,7 @@
         { 'bSortable': false, 'aTargets': [ 2 ] },
       ],
      "oLanguage": {
-         "sProcessing": "<img src='../assets/load.gif' height='50' width='50'>"
+         "sProcessing": "<img src='../assets/please_wait.gif' height='50' width='50'>"
      },
      "processing": true,
      "bInfo" : false,

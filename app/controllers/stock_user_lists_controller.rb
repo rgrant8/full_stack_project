@@ -1,6 +1,7 @@
 class StockUserListsController < ApplicationController
   before_action :set_stock_user_list, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  protect_from_forgery with: :null_session, only: Proc.new { |c| c.request.format.json? }
 
   def index
     yahoo_client = YahooFinance::Client.new

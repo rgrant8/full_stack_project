@@ -8,11 +8,10 @@ class CustomsSessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   #before_filter :before_login, :only => :create #not needed came with example
-  after_filter :after_login, :only => :create
-  after_filter :after_sign_out, :only => :create
+#  after_filter :after_login, :only => :create
+#  after_filter :after_sign_out, :only => :create
   
   def after_login
-
   end
 
   def after_sign_out
